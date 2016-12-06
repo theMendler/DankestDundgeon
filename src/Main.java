@@ -121,5 +121,12 @@ public class Main
 			System.out.println(current.getRoomName());
 			System.out.println(current.getRoomDesc());
 		}
+
+		if(hero.getPlayerHP()>0 && ) {
+			System.out.println("Congratulations! You have slain Boratheon and his minions, and are victorious!");
+		}
+		else if(hero.getPlayerHP()<=0 && isDead == false) {
+			System.out.println("You were defeated by Boratheon and have lost the game.");
+		}
 	}
 }
