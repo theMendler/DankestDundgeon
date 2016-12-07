@@ -41,4 +41,5 @@ public class Monster
 	{
 		return monsterDesc;
 	}
+	public String getMonsterName() {return monsterName;}
 }

@@ -5,14 +5,14 @@ public class Room
 	private Room[] exit;
 	private Monster roomMonster;
 	private Item roomItem;
-	private int roomMonsterNum;
+	private boolean monsterFight;
 	
-	public Room(String name, Monster monster, int enemyNum, Item item)
+	public Room(String name, Monster monster, Item item, boolean fight)
 	{
 		roomName = name;
 		roomMonster = monster;
 		roomItem = item;
-		roomMonsterNum = enemyNum;
+		monsterFight = fight;
 	}
 	public Room(String name)
 	{
@@ -56,8 +56,19 @@ public class Room
 	{
 		return roomItem;
 	}
-	public int getMonsterNum()
+	public boolean getMonsterFight() {return monsterFight;}
+	public String printExits()
 	{
-		return roomMonsterNum;
+		String message;
+		message = "You can go to: ";
+		for(Room rooms: exit)
+		{
+			if(rooms!=null) {
+				System.out.println("{" + rooms.getRoomName() + "}");
+			}
+		}
+		message += " from here.";
+		message += " Where would you like to? Please enter the room name.";
+		return message;
 	}
 }

@@ -5,6 +5,7 @@ public class Player
 	private int playerMaxHP;
 	private int playerAtt;
 	private Armor playerArmor;
+	private Armor playerShield;
 	
 	public Player(String name, int hp, int att, Armor armor)
 	{
@@ -20,7 +21,7 @@ public class Player
 	}
 	public void takeDamage(int dam)
 	{
-		playerHP = playerHP - (dam - playerArmor.block());
+		playerHP = playerHP - (dam - playerArmor.block() - playerShield.block());
 	}
 	public int getPlayerHP()
 	{
@@ -30,4 +31,6 @@ public class Player
 	{
 		return playerMaxHP;
 	}
+	public void heal(Item item) {playerHP += item.getHealth();}
+	public void equip(Armor item) {playerShield = item;}
 }
