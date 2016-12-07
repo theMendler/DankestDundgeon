@@ -169,12 +169,12 @@ public class Main
 			roomCheck = keyboard.nextLine();
 			map.moveRooms(roomCheck);
 		}
-
-		//if(hero.getPlayerHP()>0 && ) {
-		//	System.out.println("Congratulations! You have slain Boratheon and his minions, and are victorious!");
-		//}
-		//else if(hero.getPlayerHP()<=0 && isDead == false) {
-		//	System.out.println("You were defeated by Boratheon and have lost the game.");
-		//}
+		//end game
+		if(hero.getPlayerHP()>0 && boss.isDead == true) {
+			System.out.println("Congratulations! You have slain Boratheon and his minions, and are victorious!");
+		}
+		else if(hero.getPlayerHP()<=0 && boss.isDead == false) {
+			System.out.println("You were defeated by Boratheon and have lost the game.");
+		}
 	}
 }
