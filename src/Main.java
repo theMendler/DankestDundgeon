@@ -13,13 +13,13 @@ public class Main
 		Monster Voidling = new Monster("Voidling", 30, 5);
 		Boss boss = new Boss("Boratheon", 70, 12, 15);
 		
-		Demon.setDescription("A servant of the Lord of the Underworld. How can you not know what a demon is?");
+		Demon.setDescription("a servant of the Lord of the Underworld.");
 		Demon.setAttackDescription("The foul creature lunges at you with its long claws.");
 		
-		Summoner.setDescription("A mage corrupted by the dark promises of Boratheon, the Lord of the Underworld.");
+		Summoner.setDescription("a mage corrupted by the dark promises of Boratheon, the Lord of the Underworld.");
 		Summoner.setAttackDescription("The summoner whacks you with his staff.");
 		
-		Voidling.setDescription("Underlings to various nefarious creatures that do any task from tying their dark lord's shoes to \n"
+		Voidling.setDescription("n underling to various nefarious creatures that do any task from tying their dark lord's shoes to \n"
 				+ "attacking player characters like yourself.");
 		Voidling.setAttackDescription("The voidling charges at you, nimbly climbing on your body and scratching you before running \n"
 				+ "away.");
@@ -118,24 +118,28 @@ public class Main
 		Player hero = new Player(tempName, 150, 10, Leather);
 		System.out.println(one.getRoomDesc());
 
+		//Declare variables for local use in the loop
 		Monster currentMonster;
 		Item currentItem;
 		String itemCheck;
 		String roomCheck;
-		
+
+		//Main loop Sequence
 		while(hero.getPlayerHP()>0)
 		{
 			if (current.getMonsterFight())
 			{
 				//set current room's item and monster
-				System.out.println("hi");
 				currentMonster = current.getMonster();
-				System.out.println(currentMonster.getDescription());
+				System.out.println("In the room you see a " + currentMonster.getMonsterName() + ", " +
+								currentMonster.getDescription());
 				//fight
 				while (hero.getPlayerHP() > 0 && currentMonster.getHP() > 0) {
-					hero.takeDamage(currentMonster.attack());
+					//Monster attack
+					hero.takeDamage(currentMonster);
 					System.out.println(currentMonster.getAttackDescription());
-					currentMonster.takeDamage(hero.attack());
+					//Player attack
+					currentMonster.takeDamage(hero);
 					System.out.println("You swing at the " + currentMonster.getMonsterName());
 					//Player or monster death check.
 					if (currentMonster.getHP() <= 0) {
@@ -148,18 +152,22 @@ public class Main
 			}
 			if(current.getItem() != null)
             {
+            	//Set current item for the room
             	currentItem = current.getItem();
+            	//Item pick-up check
                 System.out.println("You spy a " + currentItem.getItemName() + " on the ground. Would you" +
                         " like to pick it up?");
                 System.out.println("{Y}/{N}?");
                 itemCheck = keyboard.nextLine();
                 itemCheck.toUpperCase();
+                //Add a shield to the player's inventory
                 if( itemCheck.equals("Y"))
                 {
                     if(currentItem == Shield)
                     {
                         hero.equip(Shield);
                     }
+                    //heal the player
                     hero.heal(currentItem);
                     System.out.println("You healed yourself for " + currentItem.getHealth() + " hp.");
                 }
@@ -168,6 +176,9 @@ public class Main
 			current.printExits();
 			roomCheck = keyboard.nextLine();
 			map.moveRooms(roomCheck);
+			//Set current room to the one player specified and print the room description
+			map.setCurrentRoom(map.getNextRoom());
+			map.roomText(map.getNextRoom());
 		}
 		//end game
 		if(hero.getPlayerHP()>0 && boss.isDead() == true) {
@@ -176,5 +187,6 @@ public class Main
 		else if(hero.getPlayerHP()<=0 && boss.isDead() == false) {
 			System.out.println("You were defeated by Boratheon and have lost the game.");
 		}
+
 	}
 }

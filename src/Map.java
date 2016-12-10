@@ -22,14 +22,14 @@ public class Map
 	{
 		return allRooms;
 	}
-	public void setNextRoom(Room newRoom) {nextRoom = newRoom;}
+	public void setCurrentRoom(Room newRoom) {currentRoom = newRoom;}
 	public String roomText(Room room)
 	{
 		String text;
 		text = "You come into the " + currentRoom.getRoomName() + ". " + currentRoom.getRoomDesc();
 		return text;
 	}
-	public void moveRooms(String input)
+	public void moveRooms(String input) //Moves the player to the next desired room
 	{
 		Room[] list;
 		list = currentRoom.getExits();

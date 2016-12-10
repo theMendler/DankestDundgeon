@@ -57,7 +57,7 @@ public class Room
 		return roomItem;
 	}
 	public boolean getMonsterFight() {return monsterFight;}
-	public String printExits()
+	public String printExits() // prints all the possible exits the player can go to
 	{
 		String message;
 		message = "You can go to: ";

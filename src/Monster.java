@@ -9,17 +9,17 @@ public class Monster
 
 	public Monster(String name, int hp, int att)
 	{
-		monsterName = name;
-		monsterHP = hp;
-		monsterAtt = att;
+		this.monsterName = name;
+		this.monsterHP = hp;
+		this.monsterAtt = att;
 	}
 	public int getHP()
 	{
 			return monsterHP;
 	}
-	public void takeDamage(int dam)
+	public void takeDamage(Player player) //Accepts a player, takes their attack value as damage
 	{
-		monsterHP= monsterHP-dam;
+		monsterHP= monsterHP-player.attack();
 	}
 	public int attack()
 	{
