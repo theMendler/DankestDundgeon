@@ -97,6 +97,7 @@ public class Main
 		Room current;
 		current = map.getCurrentRoom();
 		
+
 		one.setExits(two, three, five, six);
 		two.setExits(one, four, null, null);
 		three.setExits(one, four, null, null);

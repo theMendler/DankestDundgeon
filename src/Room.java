@@ -2,7 +2,7 @@ public class Room
 {
 	private String roomName;
 	private String roomDesc;
-	private Room[] exit;
+	Room[] exit = new Room[4];
 	private Monster roomMonster;
 	private Item roomItem;
 	private boolean monsterFight;
@@ -26,7 +26,7 @@ public class Room
 	
 	public void setExits(Room exit1, Room exit2, Room exit3, Room exit4)
 	{
-		Room[] exit = new Room[4];
+
 		exit[0] = exit1;
 		exit[1] = exit2;
 		exit[2] = exit3;
@@ -61,10 +61,10 @@ public class Room
 	{
 		String message;
 		message = "You can go to: ";
-		for(Room rooms: exit)
+		for(int i =0; i < exit.length; i++)
 		{
-			if(rooms!=null) {
-				System.out.println("{" + rooms.getRoomName() + "}");
+			if(exit[i]!=null) {
+				System.out.println("{" + exit[i].getRoomName() + "}");
 			}
 		}
 		message += " from here.";
